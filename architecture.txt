@@ -1,0 +1,97 @@
+admin
+	1) user roles
+		1) manager
+			1) доступ до всього
+            		2) статуси ремонту
+            		3) чат повідомлень
+		2) user
+			1) особистий кабінет
+                	- опитувальна форма
+            		2) калькулятор часу на ремонту
+            		3) калькулятор ціни на ремонт
+
+**************************************************************
+
+front
+    форма пошуку для типу ремонту
+    категорії ремонтів
+    ціни за послуги
+    дазайн будь-який
+    контактна форма (2 види)
+        1) передзвонити
+        2) написати повідомлення
+
+Список сторінок на сайті
+
+	-Home(MVP)
+	-About(MVP)
+	-Services(MVP)
+		Ремонт ноутбуків(MVP)
+		Ремонт телефонів(MVP)
+		Ремонт телевізорів(MVP)
+		Ремонт комп'ютерів(MVP)
+		Ремонт планшетів
+		Ремонт принтерів
+		Встановлення віндовс
+	-Warranty(MVP)
+	-Price(MVP)
+	-Contact(MVP)
+
+**************************************************************
+
+Data Base v2
+
+users (is done by default)
+roles (менеджер, клієнт)
+	-id;
+	-name;
+type_services
+	-id;
+	-name;
+	-description;
+type_repairs
+	-id;
+	-name;
+	-type_service_id;
+brands
+	-id;
+	-name;
+	-model;
+type_repairs_brand
+	-id;
+	-type_repair_id;
+	-brand_id;
+statuses (в обробці, в процесі, виконано)
+	-id;
+	-name;
+prices
+	-id;
+	-name;
+	-brands_services_id;
+orders
+	-id;
+	-email;
+	-type_repair_id;
+	-status_id;
+	-description;
+	-start_date;
+	-finish_date;
+
+conversations
+	-id;
+	-user_id;
+	-manager_id;
+	-order_id;
+	-status;
+	-created_at;
+	-updated_at;
+messages
+	-id;
+	-conversation_id;
+	-sender_id;
+	-message_text;
+	-is_read;
+	-image_url;
+
+Зв'язки
+
