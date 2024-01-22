@@ -56,7 +56,11 @@ type_repairs
 brands
 	-id;
 	-name;
-	-model;
+	-image_url;
+brand_models
+	-id;
+	-name;
+	-brand_id;
 type_repairs_brand
 	-id;
 	-type_repair_id;
@@ -66,8 +70,8 @@ statuses (в обробці, в процесі, виконано)
 	-name;
 prices
 	-id;
-	-name;
-	-brands_services_id;
+	-price;
+	-type_repair_id;
 orders
 	-id;
 	-email;
