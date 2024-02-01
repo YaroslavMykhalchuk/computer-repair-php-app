@@ -13,7 +13,7 @@ class BrandSeeder extends Seeder
      */
     public function run(): void
     {
-        Brand::truncate();
+        // Brand::truncate(); //очистка таблиці перед додаванням даних
 
         $brands = [
             ['name' => 'Apple', 'image_url' => null],
@@ -35,6 +35,11 @@ class BrandSeeder extends Seeder
             ['name' => 'Gigabyte', 'image_url' => null],
         ];
 
-        Brand::insert($brands);
+        // Brand::insert($brands); //додавання даних без перевірки
+
+        // перед додаванням даних перевіряємо чи є дані в таблиці
+        foreach ($brands as $brand) {
+            Brand::firstOrCreate(['name' => $brand['name']], $brand);
+        }
     }
 }

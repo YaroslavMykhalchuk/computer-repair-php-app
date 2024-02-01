@@ -9,7 +9,7 @@ class Price extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'type_repair_id'];
+    protected $fillable = ['price', 'type_repair_id'];
 
     public function typeRepair()
     {
