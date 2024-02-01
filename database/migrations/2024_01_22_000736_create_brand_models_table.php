@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('brand_id')->references('id')->on('brands');
+            $table->unsignedBigInteger('type_repair_id')->references('id')->on('type_repairs');
             $table->timestamps();
         });
     }
