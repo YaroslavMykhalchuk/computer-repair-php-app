@@ -16,4 +16,9 @@ class TypeService extends Model
         return $this->hasMany(TypeRepair::class);
     }
 
+    public function brandModels()
+    {
+        return $this->hasMany(BrandModel::class);
+    }
+
 }
