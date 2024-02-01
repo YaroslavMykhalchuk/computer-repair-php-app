@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('brand_models', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('brand_id')->references('id')->on('brands');
-            $table->unsignedBigInteger('type_repair_id')->references('id')->on('type_repairs');
+            $table->unsignedBigInteger('brand_id');
+            $table->unsignedBigInteger('type_service_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+            $table->foreign('type_service_id')->references('id')->on('type_services')->onDelete('set null');
         });
     }
 
