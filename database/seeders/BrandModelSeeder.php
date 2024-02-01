@@ -64,7 +64,7 @@ class BrandModelSeeder extends Seeder
                 'brand_id' => 5,
                 'type_service_id' => 1
             ]
-            ];
+        ];
 
         foreach ($brandModels as $brandModel) {
             BrandModel::firstOrCreate(
