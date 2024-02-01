@@ -51,7 +51,13 @@ class TypeRepairSeeder extends Seeder
         ];
 
         foreach ($typeRepairs as $typeRepair) {
-            TypeRepair::firstOrCreate(['name' => $typeRepair['name']], $typeRepair);
+            TypeRepair::firstOrCreate(
+                [
+                    'name' => $typeRepair['name'], 
+                    'type_service_id' => $typeRepair['type_service_id']
+                ], 
+                $typeRepair
+            );
         }
     }
 }
