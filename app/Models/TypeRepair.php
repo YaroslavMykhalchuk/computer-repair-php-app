@@ -18,7 +18,7 @@ class TypeRepair extends Model
 
     public function brands()
     {
-        return $this->belongsToMany(Brand::class, 'type_repairs_brand', 'type_repair_id', 'brand_id');
+        return $this->belongsToMany(Brand::class, 'type_repairs_brands', 'type_repair_id', 'brand_id');
     }
 
     public function price()
