@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\TypeService;
-use App\Models\TypeRepair;
-use App\Models\Brand;
 
 use Illuminate\Http\Request;
 
