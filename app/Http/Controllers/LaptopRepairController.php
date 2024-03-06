@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TypeService;
+use App\Models\TypeRepair;
+use App\Models\Brand;
+
 use Illuminate\Http\Request;
 
 class LaptopRepairController extends Controller
@@ -11,7 +15,16 @@ class LaptopRepairController extends Controller
      */
     public function index()
     {
-        //
+        $laptopService = TypeService::where('name', 'Ремонт ноутбуків')->with(['typeRepairs', 'brands'])->first();
+
+        if (!$laptopService) {
+            return response()->json(['message' => 'Service type for laptops not found'], 404);
+        }
+
+        return response()->json([
+            'type_repairs' => $laptopService->typeRepairs,
+            'brands' => $laptopService->brands
+        ]);
     }
 
     /**

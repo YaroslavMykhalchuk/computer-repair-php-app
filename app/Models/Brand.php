@@ -21,8 +21,8 @@ class Brand extends Model
         return $this->belongsToMany(TypeRepair::class, 'type_repairs_brands', 'brand_id', 'type_repair_id');
     }
 
-    public function brands()
+    public function typeServices()
     {
-        return $this->belongsToMany(Brand::class, 'type_services_brands');
-    }
+        return $this->belongsToMany(TypeService::class, 'type_services_brands');
+    }    
 }
