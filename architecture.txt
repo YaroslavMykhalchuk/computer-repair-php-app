@@ -53,7 +53,6 @@ type_repairs
 	-id;
 	-name;
 	-type_service_id;
-	-price_id;
 brands
 	-id;
 	-name;
