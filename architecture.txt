@@ -65,6 +65,10 @@ type_repairs_brand
 	-id;
 	-type_repair_id;
 	-brand_id;
+type_services_brands
+	-id;
+	-type_service_id;
+	-brand_id;
 statuses (в обробці, в процесі, виконано)
 	-id;
 	-name;
