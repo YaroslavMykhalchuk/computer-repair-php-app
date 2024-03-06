@@ -24,6 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/laptop-repairs', [LaptopRepairController::class, 'index']);
 Route::get('/computer-repairs', [ComputerRepairController::class, 'index']);
-Route::get('/computer-repairs', [PhoneRepairController::class, 'index']);
+Route::get('/phone-repairs', [PhoneRepairController::class, 'index']);
 
 
