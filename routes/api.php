@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LaptopRepairController;
 use App\Http\Controllers\ComputerRepairController;
 use App\Http\Controllers\PhoneRepairController;
+use App\Http\Controllers\PriceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +26,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/laptop-repairs', [LaptopRepairController::class, 'index']);
 Route::get('/computer-repairs', [ComputerRepairController::class, 'index']);
 Route::get('/phone-repairs', [PhoneRepairController::class, 'index']);
+Route::get('/prices', [PriceController::class, 'index']);
 
 
