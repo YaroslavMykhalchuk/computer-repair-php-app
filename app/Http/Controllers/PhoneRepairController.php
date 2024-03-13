@@ -13,11 +13,27 @@ class PhoneRepairController extends Controller
      */
     public function index()
     {
-        $phoneService = TypeService::where('name', 'Ремонт телефонів')->with(['typeRepairs', 'brands'])->first();
+        $phoneService = TypeService::where('name', 'Ремонт телефонів')
+        ->with(['typeRepairs:id,name,type_service_id', 'brands:id,name'])
+        ->first();
 
         if (!$phoneService) {
             return response()->json(['message' => 'Service type for phones not found'], 404);
         }
+
+        $typeRepairsTransformed = $phoneService->typeRepairs->map(function ($typeRepair) {
+            return [
+                'id' => $typeRepair->id,
+                'name' => $typeRepair->name
+            ];
+        });
+
+        $brandsTransformed = $phoneService->brands->map(function ($brand) {
+            return [
+                'id' => $brand->id,
+                'name' => $brand->name
+            ];
+        });
 
         return response()->json([
             'type_repairs' => $phoneService->typeRepairs,

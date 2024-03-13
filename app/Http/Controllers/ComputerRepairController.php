@@ -14,11 +14,27 @@ class ComputerRepairController extends Controller
      */
     public function index()
     {
-        $computerService = TypeService::where('name', 'Ремонт комп\'ютерів')->with(['typeRepairs', 'brands'])->first();
+        $computerService = TypeService::where('name', 'Ремонт комп\'ютерів')
+        ->with(['typeRepairs:id,name,type_service_id', 'brands:id,name'])
+        ->first();
 
         if (!$computerService) {
             return response()->json(['message' => 'Service type for computers not found'], 404);
         }
+
+        $typeRepairsTransformed = $computerService->typeRepairs->map(function ($typeRepair) {
+            return [
+                'id' => $typeRepair->id,
+                'name' => $typeRepair->name
+            ];
+        });
+
+        $brandsTransformed = $computerService->brands->map(function ($brand) {
+            return [
+                'id' => $brand->id,
+                'name' => $brand->name
+            ];
+        });
 
         return response()->json([
             'type_repairs' => $computerService->typeRepairs,

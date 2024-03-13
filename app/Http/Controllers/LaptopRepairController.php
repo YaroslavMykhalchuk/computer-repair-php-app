@@ -13,15 +13,32 @@ class LaptopRepairController extends Controller
      */
     public function index()
     {
-        $laptopService = TypeService::where('name', 'Ремонт ноутбуків')->with(['typeRepairs', 'brands'])->first();
+        $laptopService = TypeService::where('name', 'Ремонт ноутбуків')
+        ->with(['typeRepairs:id,name,type_service_id', 'brands:id,name'])
+        ->first();
 
         if (!$laptopService) {
             return response()->json(['message' => 'Service type for laptops not found'], 404);
         }
 
+
+        $typeRepairsTransformed = $laptopService->typeRepairs->map(function ($typeRepair) {
+            return [
+                'id' => $typeRepair->id,
+                'name' => $typeRepair->name
+            ];
+        });
+
+        $brandsTransformed = $laptopService->brands->map(function ($brand) {
+            return [
+                'id' => $brand->id,
+                'name' => $brand->name
+            ];
+        });
+
         return response()->json([
-            'type_repairs' => $laptopService->typeRepairs,
-            'brands' => $laptopService->brands
+            'type_repairs' => $typeRepairsTransformed,
+            'brands' => $brandsTransformed
         ]);
     }
 
