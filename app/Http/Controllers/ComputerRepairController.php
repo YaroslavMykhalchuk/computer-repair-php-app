@@ -37,8 +37,8 @@ class ComputerRepairController extends Controller
         });
 
         return response()->json([
-            'type_repairs' => $computerService->typeRepairs,
-            'brands' => $computerService->brands
+            'type_repairs' => $typeRepairsTransformed,
+            'brands' => $brandsTransformed
         ]);
     }
 

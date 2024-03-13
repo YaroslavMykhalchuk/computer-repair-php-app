@@ -36,8 +36,8 @@ class PhoneRepairController extends Controller
         });
 
         return response()->json([
-            'type_repairs' => $phoneService->typeRepairs,
-            'brands' => $phoneService->brands
+            'type_repairs' => $typeRepairsTransformed,
+            'brands' => $brandsTransformed
         ]);
     }
 
