@@ -25,4 +25,9 @@ class TypeRepair extends Model
     {
         return $this->belongsTo(Price::class, 'price_id');
     }
+
+    public function warranty()
+    {
+        return $this->belongsTo(Warranty::class, 'type_repair_id');
+    }
 }

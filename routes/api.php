@@ -7,6 +7,7 @@ use App\Http\Controllers\LaptopRepairController;
 use App\Http\Controllers\ComputerRepairController;
 use App\Http\Controllers\PhoneRepairController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\WarrantyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,6 @@ Route::get('/laptop-repairs', [LaptopRepairController::class, 'index']);
 Route::get('/computer-repairs', [ComputerRepairController::class, 'index']);
 Route::get('/phone-repairs', [PhoneRepairController::class, 'index']);
 Route::get('/prices', [PriceController::class, 'index']);
+Route::get('/warranties', [WarrantyController::class, 'index']);
 
 

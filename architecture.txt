@@ -76,6 +76,10 @@ prices
 	-id;
 	-price;
 	-type_repair_id;
+warranty
+	-id;
+	-duration;
+	-type_repair_id;
 orders
 	-id;
 	-email;
