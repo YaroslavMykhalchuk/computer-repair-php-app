@@ -22,15 +22,10 @@ class WarrantyController extends Controller
                 'id' => $typeService->id,
                 'name' => $typeService->name,
                 'type_repair' => $typeService->typeRepairs->map(function($typeRepair) {
-                    if($typeRepair->warranty) {
-                        $warranty = $typeRepair->warranty->first();
-                    } else {
-                        $warranty = null;
-                    }
                     return [
                         'id' => $typeRepair->id,
                         'name' => $typeRepair->name,
-                        'warranty_duration' => $warranty ? $warranty->duration : null
+                        'warranty_duration' => $typeRepair->warranty ? $typeRepair->warranty->duration : null,
                     ];
                 })
             ];
