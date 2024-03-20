@@ -8,6 +8,7 @@ use App\Http\Controllers\ComputerRepairController;
 use App\Http\Controllers\PhoneRepairController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\WarrantyController;
+use App\Http\Controllers\TypeServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,5 @@ Route::get('/computer-repairs', [ComputerRepairController::class, 'index']);
 Route::get('/phone-repairs', [PhoneRepairController::class, 'index']);
 Route::get('/prices', [PriceController::class, 'index']);
 Route::get('/warranties', [WarrantyController::class, 'index']);
-
-
+Route::get('/type-services', [TypeServiceController::class, 'index']);
+Route::get('/type-services/{id}', [TypeServiceController::class, 'show']);

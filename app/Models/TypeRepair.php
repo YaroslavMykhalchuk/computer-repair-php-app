@@ -9,7 +9,7 @@ class TypeRepair extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'type_service_id', 'price_id'];
+    protected $fillable = ['name', 'type_service_id'];
 
     public function typeService()
     {
@@ -21,9 +21,9 @@ class TypeRepair extends Model
         return $this->belongsToMany(Brand::class, 'type_repairs_brands', 'type_repair_id', 'brand_id');
     }
 
-    public function price()
+    public function prices()
     {
-        return $this->belongsTo(Price::class, 'price_id');
+        return $this->hasMany(Price::class, 'type_repair_id');
     }
 
     public function warranty()
