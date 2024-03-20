@@ -39,26 +39,31 @@ class TypeServiceController extends Controller
      */
     public function show(string $id)
     {
-        $typeService = TypeService::with(['typeRepairs' => function ($query) {
-            $query->select('id', 'name', 'type_service_id');
-        }, 'brands' => function ($query) {
+        $typeService = TypeService::with(['typeRepairs.prices', 'brands' => function ($query) {
             $query->select('brands.id', 'brands.name');
         }])->findOrFail($id, ['id', 'name']);
     
-        $response = $typeService->toArray();
-        $response['type_repairs'] = collect($response['type_repairs'])->map(function ($typeRepair) {
-            return [
-                'id' => $typeRepair['id'],
-                'name' => $typeRepair['name'],
-            ];
-        });
+        $response = [
+            'id' => $typeService->id,
+            'name' => $typeService->name,
+            'type_repairs' => $typeService->typeRepairs->map(function ($typeRepair) {
+                $prices = $typeRepair->prices->map(function($price) {
+                    return $price->price;
+                })->first();
     
-        $response['brands'] = collect($response['brands'])->map(function ($brand) {
-            return [
-                'id' => $brand['id'],
-                'name' => $brand['name'],
-            ];
-        });
+                return [
+                    'id' => $typeRepair->id,
+                    'name' => $typeRepair->name,
+                    'price' => $prices ?? null
+                ];
+            }),
+            'brands' => $typeService->brands->map(function ($brand) {
+                return [
+                    'id' => $brand->id,
+                    'name' => $brand->name,
+                ];
+            }),
+        ];
     
         return response()->json($response);
     }
