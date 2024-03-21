@@ -41,18 +41,15 @@ class TypeServiceController extends Controller
     {
         $typeService = TypeService::with(['typeRepairs.prices', 'brands' => function ($query) {
             $query->select('brands.id', 'brands.name');
-        }])->findOrFail($id, ['id', 'name']);
-    
+        }])->findOrFail($id);
+
         $response = [
-            'id' => $typeService->id,
-            'name' => $typeService->name,
             'type_repairs' => $typeService->typeRepairs->map(function ($typeRepair) {
                 $prices = $typeRepair->prices->map(function($price) {
                     return $price->price;
                 })->first();
-    
+
                 return [
-                    'id' => $typeRepair->id,
                     'name' => $typeRepair->name,
                     'price' => $prices ?? null
                 ];
@@ -60,11 +57,11 @@ class TypeServiceController extends Controller
             'brands' => $typeService->brands->map(function ($brand) {
                 return [
                     'id' => $brand->id,
-                    'name' => $brand->name,
+                    'name' => $brand->name
                 ];
             }),
         ];
-    
+
         return response()->json($response);
     }
 
