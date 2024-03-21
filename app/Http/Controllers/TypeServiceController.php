@@ -50,6 +50,7 @@ class TypeServiceController extends Controller
                 })->first();
 
                 return [
+                    'id' => $typeRepair->id,
                     'name' => $typeRepair->name,
                     'price' => $prices ?? null
                 ];
