@@ -83,6 +83,7 @@ warranty
 orders
 	-id;
 	-email;
+	-type_service_id;
 	-type_repair_id;
 	-status_id;
 	-description;

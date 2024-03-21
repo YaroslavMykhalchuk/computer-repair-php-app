@@ -25,4 +25,9 @@ class Order extends Model
     {
         return $this->belongsTo(TypeService::class, 'type_service_id');
     }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
+    }
 }
