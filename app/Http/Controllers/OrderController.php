@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -27,7 +29,27 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'email' => 'required|email',
+            'type_service_id' => 'required|integer|exists:type_services,id',
+            'type_repair_id' => 'required|integer|exists:type_repairs,id',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+        ]);
+        
+        $statusInProcessId = 1;
+        
+        $order = Order::create([
+            'email' => $validatedData['email'],
+            'type_service_id' => $validatedData['type_service_id'],
+            'type_repair_id' => $validatedData['type_repair_id'],
+            'status_id' => $statusInProcessId,
+            'description' => $validatedData['description'],
+            'start_date' => now(),
+            'price' => $validatedData['price'],
+        ]);
+        
+        return response()->json(['message' => 'Order created successfully'], 201);
     }
 
     /**

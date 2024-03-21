@@ -9,6 +9,7 @@ use App\Http\Controllers\PhoneRepairController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\TypeServiceController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,4 @@ Route::get('/prices', [PriceController::class, 'index']);
 Route::get('/warranties', [WarrantyController::class, 'index']);
 Route::get('/type-services', [TypeServiceController::class, 'index']);
 Route::get('/type-services/{id}', [TypeServiceController::class, 'show']);
+Route::post('/order', [OrderController::class, 'store']);
